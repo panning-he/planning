@@ -1,0 +1,4 @@
+<!--miniprogram/pages/test/line.wxml-->
+<view class="container">
+<view class="line"></view>
+</view>

@@ -1,0 +1,48 @@
+.blue_color,
+.blue_weekend-color,
+.blue_handle-color,
+.blue_week-color {
+    color: #333;
+}
+
+.blue_today {
+ 
+}
+
+.blue_choosed {
+    color: #000;
+    background-color: #1C86EE;
+}
+
+.blue_date-disable {
+    color: #c7c7c7;
+}
+
+.blue_prev-month-date,
+.blue_next-month-date {
+    color: #e2e2e2;
+}
+
+.blue_normal-date {
+    color: #000;
+}
+
+.blue_todo-circle {
+    border-color: #161035;
+}
+
+.blue_todo-dot {
+    background-color: #161035;
+}
+
+.blue_date-desc {
+    color: #c2c2c2;
+}
+
+.blue_date-desc-lunar {
+    color: #161035;
+}
+
+.blue_date-desc-disable {
+    color: #e2e2e2;
+}
