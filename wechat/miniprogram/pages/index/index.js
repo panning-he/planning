@@ -14,10 +14,6 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     date: time,
     dateShow: timeShow,
-    testArray: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
-    msgList: [],
-    height: 0,
-    scrollY: true,
     // 此处为日历自定义配置字段
     calendarConfig: {
       /**
@@ -59,6 +55,21 @@ Page({
   },
   onLoad: function() {
     var _this = this;
+    this.setData({
+      slideButtons: [{
+        text: '普通',
+        src: '/page/weui/cell/icon_love.svg', // icon的路径
+      }, {
+        text: '普通',
+        extClass: 'test',
+        src: '/page/weui/cell/icon_star.svg', // icon的路径
+      }, {
+        type: 'warn',
+        text: '警示',
+        extClass: 'test',
+        src: '/page/weui/cell/icon_del.svg', // icon的路径
+      }],
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -88,46 +99,8 @@ Page({
     this.setData({
       cur_year: cur_year,
       cur_month: cur_month,
-      weeks_ch: weeks_ch
+      weeks_ch: weeks_ch,
     });
-
-    // 滚动条
-    var windowHeight = 0;
-    var statusBarHeight=0;
-    var screenWidth=0;
-    wx.getSystemInfo({
-      success(res) {
-        windowHeight = res.windowHeight;
-        statusBarHeight = res.statusBarHeight;
-        screenWidth=res.screenWidth;
-      }
-    })
-    for (var i = 0; i < 25; i++) {
-      var msg = {};
-      msg.carid = '' + '沪D086' + i + 1;
-      if (i == 1) {
-        msg.msgText = '重启加速度，让项目进度更加迅速'
-      } else if (i == 2) {
-        msg.msgText = "完成界面设计";
-      }
-      else if (i == 3) {
-        msg.msgText = "服务器开发";
-      }
-      else {
-        msg.msgText = "测试文字";
-      }
-      msg.id = 'id-' + i + 1;
-      msg.siteImg = '../../resource/image/icon/complete_red.png';
-      //msg.selected=i%2==0?true:false;
-      msg.selected = false;
-      this.data.msgList.push(msg);
-    }
-    var exchangeRate = screenWidth/750;
-    var excludeHeight = 80 + 50 + 55 * 5 + 1 + 42 + 18;
-    windowHeight = windowHeight - windowHeight * 0.03 - exchangeRate * excludeHeight;
-    this.setData({ msgList: this.data.msgList, height: windowHeight });
-    console.log("windowHeight:"+windowHeight);
-    console.log("statusBarHeight:" + statusBarHeight);
   },
   onReady: function(e) {
     this.calculateEmptyGrids(2020, 1, '')
@@ -254,144 +227,5 @@ Page({
       this.swipeCheckState = 1;
     }
     this.lastMoveTime = e.timeStamp;
-  },
-  ontouchmove: function (e) {
-    if (this.swipeCheckState === 0) {
-      return;
-    }
-    //当开始触摸时有菜单显示时，不处理滑动操作
-    if (this.touchStartState === 1) {
-      return;
-    }
-    var moveX = e.touches[0].clientX - this.firstTouchX;
-    var moveY = e.touches[0].clientY - this.firstTouchY;
-    //已触发垂直滑动，由scroll-view处理滑动操作
-    if (this.swipeDirection === 2) {
-      return;
-    }
-    //未触发滑动方向
-    if (this.swipeDirection === 0) {
-      console.log(Math.abs(moveY));
-      //触发垂直操作
-      if (Math.abs(moveY) > 4) {
-        this.swipeDirection = 2;
-        return;
-      }
-      //触发水平操作
-      if (Math.abs(moveX) > 4) {
-        this.swipeDirection = 1;
-        this.setData({ scrollY: false });
-      }
-      else {
-        return;
-      }
-    }
-    //禁用垂直滚动
-    // if (this.data.scrollY) {
-    //   this.setData({scrollY:false});
-    // }
-
-    this.lastMoveTime = e.timeStamp;
-    //处理边界情况
-    if (moveX > 0) {
-      moveX = 0;
-    }
-    //检测最大左滑距离
-    if (moveX < -this.maxMoveLeft) {
-      moveX = -this.maxMoveLeft;
-    }
-    this.moveX = moveX;
-    this.translateXMsgItem(e.currentTarget.id, moveX, 0);
-  },
-  ontouchend: function (e) {
-    this.swipeCheckState = 0;
-    var swipeDirection = this.swipeDirection;
-    this.swipeDirection = 0;
-    if (this.touchStartState === 1) {
-      this.touchStartState = 0;
-      this.setData({ scrollY: true });
-      return;
-    }
-    //垂直滚动，忽略
-    if (swipeDirection !== 1) {
-      return;
-    }
-    if (this.moveX === 0) {
-      this.showState = 0;
-      //不显示菜单状态下,激活垂直滚动
-      this.setData({ scrollY: true });
-      return;
-    }
-    if (this.moveX === this.correctMoveLeft) {
-      this.showState = 1;
-      this.lastShowMsgId = e.currentTarget.id;
-      return;
-    }
-    if (this.moveX < -this.thresholdMoveLeft) {
-      this.moveX = -this.correctMoveLeft;
-      this.showState = 1;
-      this.lastShowMsgId = e.currentTarget.id;
-    }
-    else {
-      this.moveX = 0;
-      this.showState = 0;
-      //不显示菜单,激活垂直滚动
-      this.setData({ scrollY: true });
-    }
-    this.translateXMsgItem(e.currentTarget.id, this.moveX, 500);
-    //this.translateXMsgItem(e.currentTarget.id, 0, 0);
-  },
-  onDeleteMsgTap: function (e) {
-    this.deleteMsgItem(e);
-  },
-  onDeleteMsgLongtap: function (e) {
-    console.log(e);
-  },
-  onMarkMsgTap: function (e) {
-    console.log(e);
-  },
-  onMarkMsgLongtap: function (e) {
-    console.log(e);
-  },
-  getItemIndex: function (id) {
-    var msgList = this.data.msgList;
-    for (var i = 0; i < msgList.length; i++) {
-      if (msgList[i].id === id) {
-        return i;
-      }
-    }
-    return -1;
-  },
-  deleteMsgItem: function (e) {
-    var animation = wx.createAnimation({ duration: 200 });
-    animation.height(0).opacity(0).step();
-    this.animationMsgWrapItem(e.currentTarget.id, animation);
-    var s = this;
-    setTimeout(function () {
-      var index = s.getItemIndex(e.currentTarget.id);
-      s.data.msgList.splice(index, 1);
-      s.setData({ msgList: s.data.msgList });
-    }, 200);
-    this.showState = 0;
-    this.setData({ scrollY: true });
-  },
-  translateXMsgItem: function (id, x, duration) {
-    var animation = wx.createAnimation({ duration: duration });
-    animation.translateX(x).step();
-    this.animationMsgItem(id, animation);
-  },
-  animationMsgItem: function (id, animation) {
-    var index = this.getItemIndex(id);
-    var param = {};
-    var indexString = 'msgList[' + index + '].animation';
-    param[indexString] = animation.export();
-    this.setData(param);
-  },
-  animationMsgWrapItem: function (id, animation) {
-    var index = this.getItemIndex(id);
-    var param = {};
-    var indexString = 'msgList[' + index + '].wrapAnimation';
-    param[indexString] = animation.export();
-    this.setData(param);
-  },
+  }
 });

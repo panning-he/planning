@@ -30,10 +30,15 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": true,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"packNpmManually": false,
+		"packNpmRelationList": []
 	},
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"appid": "wx3d28f31bfd77f39e",
+	"appid": "wxb0842131ba3da98e",
 	"condition": {}
 }
