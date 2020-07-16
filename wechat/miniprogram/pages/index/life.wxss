@@ -1,1 +1,67 @@
 /* miniprogram/pages/index/life.wxss */
+
+.container {
+  padding: 0 24rpx;
+}
+
+.title {
+  text-align: center;
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+  line-height: 40rpx;
+  font-weight: bold;
+}
+
+.topArea {
+  display: block;
+  width: 100%;
+}
+
+.topArea textarea {
+  width: 100%;
+  border: 1px solid #e7e7e7;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+
+.list-target {
+  display: flex;
+  flex-direction: column;
+  line-height: 65rpx;
+  font-size: 28rpx;
+  margin: 2% 0;
+}
+
+.list-target-item {
+  display: flex;
+  margin: 0 30rpx;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.list-target-item-check {
+  display: block;
+  float: left;
+}
+
+.list-target-item-span {
+  flex: 1;
+}
+
+.list-target-item-operation {
+  font-size: 14px;
+  color: #f13232;
+}
+
+.goalInput {
+  display: block;
+  width: 100%;
+  height: 60rpx;
+  border: 1px solid #e7e7e7;
+  border-radius: 10rpx;
+  text-align: left;
+  padding: 0 25rpx;
+  color: #333;
+  box-sizing: border-box;
+}
