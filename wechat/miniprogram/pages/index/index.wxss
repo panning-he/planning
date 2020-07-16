@@ -84,3 +84,14 @@
   font-size: 14px;
   color: #f13232;
 }
+.goalInput {
+  display: block;
+  width: 100%;
+  height: 60rpx;
+  border: 1px solid #e7e7e7;
+  border-radius: 10rpx;
+  text-align: left;
+  padding: 0 25rpx;
+  color: #333;
+  box-sizing: border-box;
+}

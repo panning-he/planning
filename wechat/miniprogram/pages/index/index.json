@@ -3,6 +3,7 @@
     "calendar": "../../component/calendar/index",
     "mp-cells": "../../weui/cells/cells",
     "mp-cell": "../../weui/cell/cell",
+    "mp-dialog": "../../weui/dialog/dialog",
     "mp-slideview": "../../weui/slideview/slideview"
   }
 }

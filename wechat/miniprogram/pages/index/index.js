@@ -1,4 +1,3 @@
-
 "use strict";
 var util = require("../../utils/util.js");
 var calendar = require("../../utils/calendar.js");
@@ -8,6 +7,7 @@ var app = getApp();
 const date = new Date();
 Page({
   data: {
+    dialogShow: false,
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -42,9 +42,9 @@ Page({
   swipeCheckState: 0, //0未激活 1激活
   maxMoveLeft: 185, //消息列表项最大左滑距离
   correctMoveLeft: 76, //显示菜单时的左滑距离
-  thresholdMoveLeft: 75,//左滑阈值，超过则显示菜单
+  thresholdMoveLeft: 75, //左滑阈值，超过则显示菜单
   lastShowMsgId: '', //记录上次显示菜单的消息id
-  moveX: 0,  //记录平移距离
+  moveX: 0, //记录平移距离
   showState: 0, //0 未显示菜单 1显示菜单
   touchStartState: 0, // 开始触摸时的状态 0 未显示菜单 1 显示菜单
   swipeDirection: 0, //是否触发水平滑动 0:未触发 1:触发水平滑动 2:触发垂直滑动
@@ -212,7 +212,7 @@ Page({
     }
   },
 
-  ontouchstart: function (e) {
+  ontouchstart: function(e) {
     if (this.showState === 1) {
       this.touchStartState = 1;
       this.showState = 0;
@@ -227,5 +227,10 @@ Page({
       this.swipeCheckState = 1;
     }
     this.lastMoveTime = e.timeStamp;
+  },
+  addGoal: function(e) {
+    this.setData({
+      dialogShow: true
+    })
   }
 });
