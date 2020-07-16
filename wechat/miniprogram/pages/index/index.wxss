@@ -1,18 +1,18 @@
-.title{
-  background-color: #1C86EE;
+.title {
+  background-color: #1c86ee;
   height: 42rpx;
 }
 
-.title .text{
+.title .text {
   float: right;
-  margin:0 35rpx;
-  vertical-align:bottom;
+  margin: 0 35rpx;
+  vertical-align: bottom;
   font-size: 12px;
   color: white;
 }
 
-.title .icon{
-  padding:0 30rpx 0;
+.title .icon {
+  padding: 0 30rpx 0;
   float: right;
   width: 42rpx;
   height: 42rpx;
@@ -45,8 +45,8 @@
   width: 50rpx;
   height: 50rpx;
   right: 30rpx;
-  top:50%;
-  transform: translateY(-50%)
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .user-name {
@@ -56,7 +56,7 @@
   font-size: 35rpx;
 }
 
-.list-target{
+.list-target {
   display: flex;
   flex-direction: column;
   line-height: 65rpx;
@@ -64,27 +64,23 @@
   margin: 2% 0;
 }
 
-.list-target-item{
-  display: block;
+.list-target-item {
+  display: flex;
   margin: 0 30rpx;
+  justify-content: space-between;
+  align-content: center;
 }
 
-.list-target-item-check
-{
+.list-target-item-check {
   display: block;
   float: left;
 }
 
-.list-target-item-span{
-  display: block;
-  float: left;
-  margin: 0 10rpx 0;
+.list-target-item-span {
+  flex: 1;
 }
 
-.list-target-item-operation{
-  display: block;
-  float: right;
-  color: gray;
+.list-target-item-operation {
+  font-size: 14px;
+  color: #f13232;
 }
-
-

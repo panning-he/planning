@@ -1,2 +1,30 @@
 <!--miniprogram/pages/index/life.wxml-->
-<text>miniprogram/pages/index/life.wxml</text>
+
+<view class='container'>
+  <view class='title'>人生目标</view>
+  <view class='topArea'>
+    <textarea>
+      上级分类第三方 的撒范德萨发大是大非的撒范德萨发
+    </textarea>
+  </view>
+  <view class="list-target" wx:for="{{[1, 2, 3, 4, 5, 6, 7, 8, 9]}}">
+    <view class="list-target-item">
+      <view class="list-target-item-check">
+        <checkbox></checkbox>
+      </view>
+      <view class="list-target-item-span">如果我们真的努力了会怎么样呢？</view>
+      <view class="list-target-item-operation">删除</view>
+    </view>
+  </view>
+  <view class="add_remind" wx:if="{{msgList.length<=0}}">
+    点击右下角“+”号添加目标计划
+  </view>
+</view>
+<view bindtap='addGoal'>
+  <image class="add_icon" src="../../resource/image/icon/addicon.png"></image>
+</view>
+<mp-dialog title="填写目标" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '取消'}, {text: '确定'}]}}">
+  <view>
+    <input type="text" class='goalInput' placeholder='填写自己的目标'></input>
+  </view>
+</mp-dialog>
